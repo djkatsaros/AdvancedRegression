@@ -1,0 +1,282 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%latex
+% blank document  for homework, notes, articles etc. 
+% Dean Katsaros, djkatsaros@gmail.com
+%%
+%
+
+\documentclass[11pt]{extarticle}
+
+\pagestyle{plain}
+
+%to eliminate page numbers, change to pagestyle{empty}
+
+%%% Special symbol packages %%%
+
+
+
+\oddsidemargin 6pt\evensidemargin 6pt\marginparwidth 48pt\marginparsep 10pt
+\topmargin -12pt\headheight 6pt\headsep 15pt
+
+\footskip 30pt
+\textheight 625pt\textwidth 431pt\columnsep 10pt\columnseprule 0pt
+
+
+\usepackage{mathrsfs,amsfonts,latexsym,amssymb,amsthm,amsmath}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{ esint }
+\usepackage{ dsfont }
+\usepackage{amsthm} 
+%\usepackage{pifont}
+
+\usepackage{amsopn}
+%\usepackage{eufrak}
+\usepackage{dsfont}
+
+
+
+
+%%%%Page size controls %%%
+
+\setlength{\textwidth}{7 in}
+\setlength{\textheight}{9.5 in}
+\setlength{\headheight}{-0.25 in}
+\setlength{\headsep}{0 in}
+\setlength{\topmargin}{0 in}
+\setlength{\oddsidemargin}{-.25 in}
+
+%%% Define new commands, such as ideal symbols %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ang}[1]{\langle #1 \rangle}  % Ideal / old inner product symbol
+%shorthands for tilde and upper bar notations
+\newcommand{\barr}[1]{\overline{#1}} % barss
+\newcommand{\tl}[1]{\tilde{#1}} % tilde
+\newcommand{\hhat}[1]{\widehat{#1}} % hats that fit. fourier transfrom notation etc. 
+
+% Dots, times, etc. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ccdots}{,\cdots,}
+\newcommand{\lldots}{,\ldots,}
+\newcommand{\ttimes}{\times \cdots \times}
+\newcommand{\pplus}{+ \cdots +}
+\newcommand{\sstar}{* \cdots *}
+
+
+%%%Shortcuts%%%
+%Commonly used symbols, such as \rightarrow, \varepsilon have shortcuts defined here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\R}{\right} % stand ins for the sizing commands \left and \right that are less     cluttered
+\newcommand{\lf}{\left} %Example: \left( \right) becomes \lf( \R) <-- much better. 
+
+\newcommand{\norm}[1]{\left|\left| #1 \right|\right| }  %% autosizing for pipes indicating norms built into one function
+\newcommand{\abs}[1]{\left| #1 \right|} % similarly for absolute value.
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\grad}{\nabla} % nabla is dumb and I never remmeber that shit
+\newcommand{\eps}{\varepsilon}
+\newcommand{\del}{\delta}
+\newcommand{\sig}{\sigma}
+\newcommand{\vphi}{\varphi}
+\newcommand{\omg}{\omega}
+\newcommand{\alp}{\alpha}
+\newcommand{\lam}{\lambda}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\p}{\partial}
+\newcommand{\Del}{\Delta}
+\newcommand{\supp}{\text{supp}}
+\newcommand{\ttl}[1]{\widetilde{#1}}
+\newcommand{\ppm}{{[\pm]}}
+\newcommand{\mmp}{{[\mp]}}
+\newcommand{\beg}{\begin{equation}}
+\newcommand{\en}{\end{equation}}
+\newcommand{\begA}{\begin{equation}\begin{aligned}}
+\newcommand{\enA}{\end{aligned} \end{equation}}
+
+
+% ``diamond'' end of argument indicator in place of \qed [ purely aesthetic :) ]
+\newcommand{\di}{\hfill{\huge{$\diamond$}}}
+
+\usepackage{hyperref}
+% macros for tagging equations
+\newcommand{\labref}[2]{\label{eq:#1} \tag{#2}}
+\newcommand{\rf}[1]{\ref{eq:#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%special symbols%%%
+% Symbols for fancy letters in mathfrak, mathcal, mathscript, common sets notations, and other
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cf}{\mathop {\rm cf}\nolimits} 
+\newcommand{\cl}{\mathop {\rm cl}\nolimits} 
+\newcommand{\St}{\mathop {\rm St}\nolimits} 
+\newcommand{\Int}{\mathop{\rm Int}\nolimits}
+
+\newcommand {\ind}{\mathds{1}}
+\newcommand {\IV}{\mathbb{V}}
+\newcommand {\IN}{\mathbb{N}}
+\newcommand {\IZ}{\mathbb{Z}}
+\newcommand {\IQ}{\mathbb{Q}}
+\newcommand {\IP}{\mathbb{P}}
+\newcommand {\IR}{\mathbb{R}}
+\newcommand {\IC}{\mathbb{C}}
+\newcommand {\IE}{\mathbb{E}}
+\newcommand {\IT}{\mathbb{T}}
+\newcommand {\IK}{\mathbb{K}}
+\newcommand {\IX}{\mathbb{X}}
+\newcommand {\cT}{\mathcal{T}}
+\newcommand {\cS}{\mathcal{S}}
+\newcommand {\cR}{\mathcal{R}}
+\newcommand {\cE}{\mathcal{E}}
+\newcommand {\cN}{\mathcal{N}}
+\newcommand {\cU}{\mathcal{U}}
+\newcommand {\cJ}{\mathcal{J}}
+\newcommand {\cI}{\mathcal{I}}
+\newcommand {\cP}{\mathcal{P}}
+\newcommand {\cH}{\mathcal{H}}
+\newcommand {\cB}{\mathcal{B}}
+\newcommand {\cX}{\mathcal{X}}
+\newcommand {\cA}{\mathcal{A}}
+\newcommand {\cF}{\mathcal{F}}
+\newcommand {\sF}{\mathscr{F}}
+\newcommand {\sC}{\mathscr{C}}
+\newcommand {\sE}{\mathscr{E}}
+\newcommand {\sT}{\mathscr{T}}
+\newcommand {\sA}{\mathscr{A}}
+\newcommand {\sJ}{\mathscr{J}}
+\newcommand {\sG}{\mathscr{G}}
+\newcommand {\sB}{\mathscr{B}}
+\newcommand {\sL}{\mathscr{L}}
+\newcommand {\fF}{\mathfrak{F}}
+\newcommand {\fP}{\mathfrak{P}}
+\newcommand {\fU}{\mathfrak{U}}
+\newcommand {\fT}{\mathfrak{T}}
+\newcommand {\fA}{\mathfrak{F}}
+\newcommand {\fC}{\mathfrak{C}}
+\newcommand {\fB}{\mathfrak{B}}
+\newcommand {\GF}{\text{GF}}
+
+\newcommand {\lopen} {~]}
+\newcommand {\ropen}{[~}
+\newcommand {\IS}{\mathbb{S}}
+\newcommand {\Node}{\operatorname{Node}}
+\newcommand {\lub} {\rm{lub}}
+\newcommand {\glb}{\rm{glb}}
+
+
+\DeclareMathSymbol{\Upset}{\mathop}{symbols}{"2A}
+\DeclareMathSymbol{\Downset}{\mathop}{symbols}{"2B}
+\DeclareMathSymbol{\upset}{\mathop}{symbols}{"22}
+\DeclareMathSymbol{\downset}{\mathop}{symbols}{"23}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% Environment and formatting packages %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx}
+\usepackage{wasysym}
+
+\usepackage{enumitem} % ex. [label = \roman*] for i, [... =  \alph*] for a, (\roman*) for (i), etc.
+% Start from a number not 1 \setcounter{enumi}{4}
+% enumitem Doc'n : http://www.texnia.com/archive/enumitem.pdf
+
+\usepackage{bbm}
+\usepackage{multicol}
+
+% for boxing theorems
+\usepackage{mdframed}
+\usepackage{lipsum}
+\usepackage[utf8]{inputenc} 
+
+%\newtheorem{theorem}{Theorem}[section] % environments without boxing
+
+\newmdtheoremenv{theorem}{Theorem}[section] % with boxing.
+									% ETC
+
+%\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{definition}\newmdtheoremenv{definition}[theorem]{Definition}
+% \newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{plain}
+\newmdtheoremenv{proposition}[theorem]{Proposition}
+\newmdtheoremenv{result}[theorem]{Result}
+
+
+%\newtheorem{corollary}[theorem]{Corollary}
+\newmdtheoremenv{corollary}[theorem]{Corollary}
+
+%\newtheorem{lemma}[theorem]{Lemma}
+\newmdtheoremenv{lemma}[theorem]{Lemma}
+
+\newmdtheoremenv{conjecture}[theorem]{Conjecture}
+
+\newmdtheoremenv{claim}[theorem]{Claim}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newmdtheoremenv{implications}[theorem]{Implications}
+\newmdtheoremenv{uses}[theorem]{Uses}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+
+\newtheorem{question}[theorem]{Question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%\title{The Axiom of Choice, Nets, and the Tychonoff Theorem}
+%\author{Dean Katsaros}
+%\date{12/2/15}
+
+%\maketitle
+
+\bigskip
+
+{\bf Group Names:}
+ 
+
+\vskip100pt
+
+{\bf Answer:}
+
+
+\end{document}
+
+
+%% Skeleton of a table%%
+\[ \begin{tabular}{|c | c | c | c | c| c | } \hline 1 & 2 & 3 & 4 & 5 & Total \\ \hline
+20 points & 20 points & 20 points & 20 points & 20 points &  100 points \\ \hline
+& & & & &  \\ 
+& & & & &  \\ 
+& &  & & &  \\
+& &  & & &  \\ \hline
+\end{tabular} \]
+\pagebreak
+
+%Figuree
+\begin{figure}[h]
+\includegraphics[width=.85\textwidth, height=200pt]{RtildeR}
+\centering
+\caption{$\tilde{R}_j$ from $R_j$ and $v_j$.}
+\end{figure}
+\vskip8pt
+
+%minipage (can be indented etc.)
+ \hfill\begin{minipage}{\dimexpr\textwidth-1.5cm}
+ 
+\xdef\tpd{\the\prevdepth}
+\end{minipage}
+
+
+
+
+
