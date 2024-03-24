@@ -52,13 +52,19 @@ def main(data: str,test: str, toPredict: str, minToDrop: float, maxToImpute: flo
     > toPredict: parameter to predict
     > minToDrop: If more than this percentage missing, drop the data column
     > maxToImpute: If less than this is missing, use basic imputation to fill in missing values
+    Performs the data cleaning, missing value imputation/prediction, and model prediction for the dataset.
     """
     from data_cleaning import drop_nulls, collect_missing, basic_imputer, predictions, predictions_num, predict_missing_vals
 
     #Data cleaning:
     data, tooMuchMissing = drop_nulls(data, minToDrop)
     cols_missing, num_missing, cat_missing = collect_missing(data, maxToImpute)
-
+    # Plot data heatmap, examine how much is missing after dropping high missing values 
+    plt.figure(figsize=(16, 6))
+    sns.heatmap(data.isnull(), cbar=False)
+    plt.title('Missing values before imputation')
+    plt.show()   
+    print("cols with more than {} missing values:".format(minToDrop), tooMuchMissing)
     imputer_object=SimpleImputer(strategy = "most_frequent") # categ. imputer 
     imputer_num = IterativeImputer(estimator=RandomForestRegressor()) # numerical imputer 
     data = basic_imputer(data, cols_missing, imputer_object, imputer_num) # impute missing values
@@ -165,7 +171,7 @@ def main(data: str,test: str, toPredict: str, minToDrop: float, maxToImpute: flo
 
 if __name__ == "__main__":
     # import training and test set
-    data_name = input("Enter path to dataset: ")
+    data_name = input("Enter path to training dataset: ")
     test_name = input("Enter path to test data: ")
     try:
         data=pd.read_csv(data_name)

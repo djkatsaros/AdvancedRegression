@@ -6,6 +6,7 @@ numerical and categorical data.
 
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import matplotlib.pyplot as plt
 
 import os
 for dirname, _, filenames in os.walk('/Users/deankatsaros/Desktop/housing_prices_kaggle/datasets/'):
@@ -33,6 +34,7 @@ from sklearn.impute import IterativeImputer, SimpleImputer
 
 import warnings
 warnings.filterwarnings('ignore')
+import matplotlib.pyplot as plt
 
 def drop_nulls(data, threshold: float):
     """ drops data where more than *threshold*, where threshold is a percentage, of
@@ -109,6 +111,7 @@ def predictions(data, target, drop_c):
     le = LabelEncoder()
     scaler = MinMaxScaler()
 
+    # encodes columns values to train on the model
     for col in X.columns:
         if X[col].dtype != 'object':
             X[col] = le.fit_transform(X[[col]]) # calls the column as a data frame if numerical, as numeric labels. 
@@ -120,11 +123,9 @@ def predictions(data, target, drop_c):
     #cross validate with k-fold cross-validation.
     kf = StratifiedKFold(n_splits=6, shuffle=True, random_state=42)
     scores = cross_val_score(model, X, y, cv=kf, scoring='accuracy')
-
     print("Model generated fitting cleaned data to column {}.".format(target))
     print("Scores for each fold:", scores)
     print("Mean score:", scores.mean())
-
     return model
 
 def predictions_num(data, target, drop_c, scaler):
@@ -133,7 +134,7 @@ def predictions_num(data, target, drop_c, scaler):
     a column to predict: target,
     and a list of columns to drop: drop_c.
     note that data cannot contain missing values.
-    Returns a random forest regressor fitted to the data and target. 
+    Returns a random forest classifier fitted to the data and target. 
     prints cross validation scores using k-fold cross validation. 
     """
     X = data.drop(drop_c, axis = 1)
@@ -153,7 +154,7 @@ def predictions_num(data, target, drop_c, scaler):
     print("Model generated fitting cleaned data to column {}.".format(target))
     print("Scores for each fold:", scores)
     print("Mean score:", scores.mean())
-
+    
     return model
 
 def predict_missing_vals(data_, model, target, drop_c = []):
