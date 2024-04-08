@@ -39,12 +39,14 @@ import matplotlib.pyplot as plt
 def drop_nulls(data, threshold: float):
     """ drops data where more than *threshold*, where threshold is a percentage, of
     the data is missing
+    -------------------------
     inputs:
-    dataframe: data
-    a number: threshold
+      > dataframe: data
+      > a number: threshold
         the cutoff below which data is not deleted.
+    -------------------------   
     returns:
-    dataframe data with missing data deleted.
+      > dataframe data with missing data deleted.
     """
     # get a series of the percentages of null values
     # make a list of the column names with more than
@@ -58,22 +60,24 @@ def drop_nulls(data, threshold: float):
 def collect_missing(data, threshold: float):
     """Collects column names for columns missing less data but who are 
     missing less than a threshold of the data. 
+    -------------------------  
     Inputs: 
-    a dataframe: data, 
-    A number: threshold, 
+      > dataframe: data, 
+      > A number: threshold, 
         which is the cutoff for collecting the col name
     returns:
-    lists of the missing columns, a list of the missing columns with numerical data, and 
+    - - - - - - - - - - - - - - - - - - - - - - - - -  
+      > list of the missing columns, a list of the missing columns with numerical data, and 
     a list of missing columns with categorical data
     """
     cols_missing = [col for col in data.columns
                     if (data[col].isnull().sum() / len(data) * 100) < threshold
                         and ((data[col].isnull().sum() / len(data)*100) > 0)]
 
-    #missing <threshold numerical type
+    #missing less than threshold numerical type
     num_missing = [col for col in cols_missing if data[col].dtype != 'object']
 
-    #missing <threshold and categorical type
+    #missing less than threshold and categorical type
     cat_missing = [col for col in cols_missing if data[col].dtype == 'object']
 
     return cols_missing, num_missing, cat_missing
@@ -81,13 +85,15 @@ def collect_missing(data, threshold: float):
 def basic_imputer(data, cols_missing, imputer_object, imputer_num):
     """implements a basic imputer for a list of column names for data.
     uses a different imputer if data is categorical vs numerical. 
+    - - - - - - - - - - - - - - - - - - - - - - - - -
     inputs:
-    dataframe: data
-    list of missing columns to impute: cols_missing
-    categorical imputer: imputer_object
-    numerical imputer: imputer_num
+      > dataframe: data
+      > list of missing columns to impute: cols_missing
+      > categorical imputer: imputer_object
+      > numerical imputer: imputer_num
+    - - - - - - - - - - - - - - - - - - - - - - - - -  
     returns:
-    dataframe data with imputed values.
+      > dataframe data with imputed values.
     """
     for col in cols_missing:
         if data[col].dtype == 'object':
@@ -132,9 +138,10 @@ def predictions_num(data, target, drop_c, scaler):
     """ 
     Takes in a pandas dataframe: data, 
     a column to predict: target,
-    and a list of columns to drop: drop_c.
+    a scaler to scale the data for use in the classifier,
+    a list of columns to drop: drop_c.
     note that data cannot contain missing values.
-    Returns a random forest classifier fitted to the data and target. 
+    Returns a random forest regressor fitted to the data and target. 
     prints cross validation scores using k-fold cross validation. 
     """
     X = data.drop(drop_c, axis = 1)
@@ -159,14 +166,16 @@ def predictions_num(data, target, drop_c, scaler):
 
 def predict_missing_vals(data_, model, target, drop_c = []):
     """predicts the missing values in specified columns using the inputed model.
+   - - - - - - - - - - - - - - - - - - - - - - - -   
     inputs:
-    dataframe: data_
-    model to predict with: model
-    target to predict: target
-    columns to drop: drop_c
+      > dataframe: data_
+      > model to predict with: model
+      > target to predict: target
+      > lsit of columns to drop: drop_c
         where the columns are those missing alot of values.
+   - - - - - - - - - - - - - - - - - - - - - - - - -   
     returns:
-    dataframe data_ with predicted values in the columns in
+      > dataframe data_ with predicted values in the columns in
     """
     # encode dataframe with label encoder.
     df_encoded = data_.drop(drop_c + [target], axis=1, errors='ignore')
