@@ -85,20 +85,41 @@ def main(data: str,test: str, toPredict: str, minToDrop: float, maxToImpute: flo
     for col in drop_cols[:-1]:
         if data_clean[col].dtype == 'object':
             models[col] = predictions(data_clean, col, drop_cols)
+            feature_names = list(data_clean.drop(drop_cols, axis=1).columns)
+            feature_imp = pd.DataFrame( {'importance':models[col].feature_importances_}, 
+                                       index=feature_names)
+            importance_ = input("Print feature importances [y/n]? ")            
+            if importance_.lower() == 'y':
+                display(feature_imp.sort_values(by='importance', ascending=False))
+
+
         if data_clean[col].dtype != 'object':
             models[col] = predictions_num(data_clean, col, drop_cols, scaler)
-    
+            feature_names = list(data_clean.drop(drop_cols,axis=1).columns)
+            feature_imp = pd.DataFrame( {'importance':models[col].feature_importances_},
+                                       index=feature_names)
+            importance_ = input("Print feature importances [y/n]? ")
+            if importance_.lower() == 'y':
+                display(feature_imp.sort_values(by='importance', ascending=False))
+
     #missing_vals = {}
     for j in range(len(drop_cols)-1):
         drop_temp = drop_cols[0:j] + drop_cols[j+1:len(drop_cols)]
         predict_missing_vals(data_missing, models[drop_cols[j]], drop_cols[j],
                                                  drop_temp )
+        #print important features for models:
+        
+        #feature_imp = pd.DataFrame( {'importance': models[drop_cols[j]].feature_importances_}, 
+        #                index=list(data_clean.drop([drop_cols[j]]+ drop_temp ).columns))
+
     # Check for missing values by plotting heatmap.    
     plt.figure(figsize=(16, 6))
     sns.heatmap(data_missing.isnull(), cbar=False)
     plt.title('Missing values after imputation')
     plt.show()
-
+    
+        
+    
     # Concatenate clean and missing dataframe into one dataframe. 
     data_complete = pd.concat([data_missing, data_clean], axis=0)
     print("The shape of the completed dataframe is: ", data_complete.shape)
